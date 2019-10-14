@@ -24,6 +24,7 @@ import { WidgetTracker } from './widgettracker';
  *
  * @returns A promise that resolves with whether the dialog was accepted.
  */
+//Possible location to pass PATH on explorer to DIALOG to pass to TERMINAL
 export function showDialog<T>(
   options: Partial<Dialog.IOptions<T>> = {}
 ): Promise<Dialog.IResult<T>> {
@@ -90,6 +91,8 @@ export class Dialog<T> extends Widget {
     let normalized = Private.handleOptions(options);
     let renderer = normalized.renderer;
 
+    //FELIPE
+    //let pathParent = '';
     this._host = normalized.host;
     this._defaultButton = normalized.defaultButton;
     this._buttons = normalized.buttons;

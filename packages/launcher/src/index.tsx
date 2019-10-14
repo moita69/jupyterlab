@@ -125,6 +125,9 @@ export class Launcher extends VDomRenderer<LauncherModel> {
     this._callback = options.callback;
     this._commands = options.commands;
     this.addClass(LAUNCHER_CLASS);
+
+    //this.cwd is blank
+    console.log('launcher>index>l129:', this._cwd);
   }
 
   /**
@@ -198,6 +201,11 @@ export class Launcher extends VDomRenderer<LauncherModel> {
         ...item.args,
         cwd: this.cwd
       });
+      //needed to pass this.cwd forward
+      //FELIPE
+      console.log('launcher>l205> this._commands', this._commands);
+      console.log('launcher>l205> this.cwd', this.cwd);
+      console.log('launcher>l205> this._cwd', this._cwd);
       let kernel = KERNEL_CATEGORIES.indexOf(cat) > -1;
       if (cat in categories) {
         section = (
@@ -368,6 +376,14 @@ function Card(
   const caption = commands.caption(command, args);
   const label = commands.label(command, args);
   const title = kernel ? label : caption || label;
+
+  //FELIPE
+  console.log('command: ', command);
+  console.log('args: ', args);
+  console.log('caption: ', caption);
+  console.log('label: ', label);
+  console.log('title: ', title);
+  console.log('launcher.cwd: ', launcher.cwd);
 
   // Build the onclick handler.
   let onclick = () => {

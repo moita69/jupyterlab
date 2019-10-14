@@ -55,6 +55,11 @@ export class Terminal extends Widget implements ITerminal.ITerminal {
 
     this.addClass(TERMINAL_CLASS);
 
+    //FELIPE
+    //window.console("window>FELIPE:this._options>",this._options);
+    console.log('console>FELIPE:arguments>', arguments);
+    console.log('console>FELIPE:this._options>', this._options);
+    //FimFELIPE
     // Create the xterm.
     this._term = new Xterm(xtermOptions);
     this._initializeTerm();
@@ -72,6 +77,10 @@ export class Terminal extends Widget implements ITerminal.ITerminal {
 
       this.title.label = `Terminal ${session.name}`;
       this._setSessionSize();
+
+      console.log('terminal>wdget>l80>dir');
+      console.dir(this);
+
       if (this._options.initialCommand) {
         this.session.send({
           type: 'stdin',

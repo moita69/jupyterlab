@@ -229,6 +229,8 @@ function activateFactory(
       model
     });
 
+    //FELIPE Adiciona a launcher
+    //console.log("filebrowser-ext>PathExt>l233: ",PathExt.basename())
     // Add a launcher toolbar item.
     let launcher = new ToolbarButton({
       iconClassName: 'jp-AddIcon',
@@ -935,6 +937,8 @@ namespace Private {
     browser: FileBrowser
   ): Promise<MainAreaWidget<Launcher>> {
     const { model } = browser;
+    //FELIPE
+    console.log('filebrowser-ext>model>l942: ', model);
 
     return commands
       .execute('launcher:create', { cwd: model.path })
@@ -979,6 +983,7 @@ namespace Private {
   /**
    * Navigate to a path or the path containing a file.
    */
+  //FELIPE possivel local que trata do local "PATH"
   export async function navigateToPath(
     path: string,
     factory: IFileBrowserFactory
@@ -987,9 +992,15 @@ namespace Private {
     const { services } = browserForPath.model.manager;
     const localPath = services.contents.localPath(path);
 
+    //FELIPE
+    console.log(
+      'filebrowser-ext>l998, model: ',
+      JSON.stringify(browserForPath)
+    );
     await services.ready;
     let item = await services.contents.get(path, { content: false });
     const { model } = browserForPath;
+
     await model.restored;
     if (item.type === 'directory') {
       await model.cd(`/${localPath}`);

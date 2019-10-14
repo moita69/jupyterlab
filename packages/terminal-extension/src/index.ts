@@ -330,6 +330,9 @@ export function addCommands(
     caption: 'Start a new terminal session',
     iconClass: args => (args['isPalette'] ? '' : TERMINAL_ICON_CLASS),
     execute: async args => {
+      //FELIPE
+      console.log('terminal>index>l335>arguments', arguments);
+
       // wait for the widget to lazy load
       let Terminal: typeof WidgetModuleType.Terminal;
       try {
